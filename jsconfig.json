@@ -1,0 +1,12 @@
+{
+    "includes":[
+        "./src/**/*"
+    ],
+    "compilerOptions":{
+        "baseUrl":".",
+        "types": ["vite/client", "@types/jest"],
+        "paths": {
+            "@/*": ["./src/*"],
+        },
+    }
+}
