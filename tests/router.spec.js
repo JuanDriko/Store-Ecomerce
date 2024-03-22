@@ -1,13 +1,13 @@
-import { createRouter, createWebHistory } from 'vue-router';
-import App from '@/App.vue';
-import Home from '@/views/Home.vue';
-import About from '@/views/Aboutus.vue';
+const { createRouter, createWebHistory } = require('vue-router');
+const App = require('../src/App.vue').default;
+const Dashboard = require('../src/views/Dashboard.vue').default;
+const Aboutus = require('../src/views/Aboutus.vue').default;
 
 const router = createRouter({
   history: createWebHistory(),
   routes: [
     { path: '/', component: Home },
-    { path: '/about', component: About },
+    { path: '/about', component: Aboutus },
   ],
 });
 

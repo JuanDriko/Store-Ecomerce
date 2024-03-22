@@ -21,7 +21,7 @@
     "jquery": "^3.7.1",
     "pinia": "^2.1.7",
     "sweetalert2": "^11.10.6",
-    "vue": "^3.4.21",
+    "vue": "^2.7.16",
     "vue-router": "^4.2.5"
   },
   "devDependencies": {
