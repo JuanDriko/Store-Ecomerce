@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light shadow navbar-lg">
     <div class="container-fluid">
-      <router-link to="/" class="navbar-brand text-primary logo h1 fs-4">
+      <router-link to="/Store-Ecomerce/" class="navbar-brand text-primary logo h1 fs-4">
         <h3>Store+</h3>
       </router-link>
 
@@ -20,7 +20,7 @@
       <div class="collapse navbar-collapse" id="templatemo_main_nav">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <li class="nav-item ms-4">
-            <router-link to="/" class="nav-link ms-5 mt-3">Inicio</router-link>
+            <router-link to="/Store-Ecomerce/" class="nav-link ms-5 mt-3">Inicio</router-link>
           </li>
           <li class="nav-item ms-4">
             <router-link to="/Aboutus/" class="nav-link ms-5 mt-3">Nosotros</router-link>

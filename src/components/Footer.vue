@@ -32,7 +32,7 @@
                     <div class="col-md-4 pt-2">
                         <h4 class="text-light border-bottom border-light">Información</h4>
                         <ul class="list-unstyled text-light footer-link-list">
-                            <li><router-link href="#" to="/" class="text-decoration-none"   >Inicio</router-link></li>
+                            <li><router-link href="#" to="/Store-Ecomerce/" class="text-decoration-none"   >Inicio</router-link></li>
                             <li><router-link href="#" to="/Aboutus/" class="text-decoration-none"   >Acerca de Nosotros</router-link></li>
                             <li><router-link href="#" to="/Products/" class="text-decoration-none">Productos</router-link></li>
                         </ul>
