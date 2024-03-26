@@ -72,19 +72,19 @@
             </div>
         </section>
         <div>
-        <Popular/>
+        <PopularPro/>
         </div>
     </div>
 </template>
 
 <script>
 import { useCartStore } from '@/store/car.js';
-import Popular from '@/components/Popular.vue';
-import { getSingleProduct } from '../services.js';
+import PopularPro from '@/components/PopularPro.vue';
+import { getSingleProduct } from './services/services.js';
 
 export default {
   components: {
-    Popular
+    PopularPro
   },
   data() {
     return {

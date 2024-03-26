@@ -1,19 +1,19 @@
 <template>
   <div>
-    <Navbar/>
+    <NavBar/>
     <router-view></router-view>
-    <Footer/>
+    <FooteR/>
   </div>
 </template>
 
 <script>
-import Navbar from './components/Navbar.vue'
-import Footer from './components/Footer.vue'
+import NavBar from './components/NavBar.vue'
+import FooteR from './components/FooteR.vue'
 
 export default {
   components: {
-    Navbar,
-    Footer
+    NavBar,
+    FooteR
   }
 }
 </script>
@@ -37,3 +37,4 @@ export default {
   filter: drop-shadow(0 0 2em #42b883aa);
 }
 </style>
+./components/NavBar.vue./components/FooteR.vue

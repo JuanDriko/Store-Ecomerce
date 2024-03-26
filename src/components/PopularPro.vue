@@ -109,7 +109,7 @@ export default {
     this.getTopProducts();
     window.addEventListener('resize', this.screenSize);
   },
-  beforeDestroy() {
+  beforeMount() {
     window.removeEventListener('resize', this.screenSize);
   }
 };

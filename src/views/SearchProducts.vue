@@ -26,19 +26,19 @@
       <div v-else>
         <h2 class="uppercase mt-5 text-yellow-500 text-lg font-semibold m-5">No se encontraron resultados, inténtelo nuevamente</h2>
       </div>
-      <Popular :addToCart="addToCart"/>
+      <PopularPro :addToCart="addToCart"/>
     </div>
   </div>
 </template>
 
 <script>
 import { useCartStore } from '@/store/car.js';
-import Popular from '@/components/Popular.vue';
+import PopularPro from '@/components/PopularPro.vue';
 import { searchProducts } from './services/services.js';
 
 export default {
   components: {
-    Popular,
+    PopularPro,
   },
   data() {
     return {

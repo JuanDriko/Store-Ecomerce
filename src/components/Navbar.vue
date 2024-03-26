@@ -31,12 +31,12 @@
                 Categorías
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <router-link v-for="category in categories" :key="category" :to="{ name: 'Categoric', params: { category: category }}" class="dropdown-item">{{ category }}</router-link>
+                <router-link v-for="category in categories" :key="category" :to="{ name: 'CategoricPro', params: { category: category }}" class="dropdown-item">{{ category }}</router-link>
               </div>
             </div>
           </li>
           <li class="nav-item ms-4">
-            <router-link to="/Products/" class="nav-link ms-5 mt-3">Productos</router-link>
+            <router-link to="/ProductsAll/" class="nav-link ms-5 mt-3">Productos</router-link>
           </li>
           <li class="nav-item ms-4">
             <router-link to="/Carshopping/" class="nav-link ms-4">
@@ -49,7 +49,7 @@
             </router-link>
           </li>
           <li class="nav-item ms-4">
-              <Search />
+              <SearchQuery />
           </li>
         </ul>
       </div>
@@ -58,13 +58,13 @@
 </template>
 
 <script>
-import Search from './Search.vue'
+import SearchQuery from './SearchQuery.vue'
 import { useCartStore } from '@/store/car.js'
 import { getCategories } from './services/services.js';
 
 export default {
   components: {
-    Search,
+    SearchQuery,
   },
   data() {
     return {

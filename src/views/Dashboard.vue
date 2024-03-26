@@ -1,31 +1,24 @@
 <template>
   <div>
-    <Banner/>
-    <Popular/>
-    <Categories/>    
+    <BannerSection />
+    <PopularPro />
+    <CategorieS />    
   </div>
 </template>
 
 <script>
-import Banner from '../components/Banner.vue'
-import Categories from '../components/Categories.vue'
-import Popular from '../components/Popular.vue'
+import { defineComponent } from 'vue';
+import BannerSection from '../components/BannerSection.vue';
+import CategorieS from '../components/CategorieS.vue';
+import PopularPro from '../components/PopularPro.vue';
 
-  export default {
-    components:{
-      Banner,
-      Categories,
-      Popular
-    },
-    data() {
-      return {
-        
-      }
-    },
-    
+export default defineComponent({
+  components: {
+    BannerSection,
+    CategorieS,
+    PopularPro
   }
+});
 </script>
-
 <style lang="scss" scoped>
-
 </style>

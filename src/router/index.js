@@ -1,35 +1,35 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Dashboard from "@/views/Dashboard.vue";
-import Aboutus from "@/views/Aboutus.vue";
-import Contact from "@/views/Contact.vue";
-import Carshopping from "@/views/Carshopping.vue";
-import Products from "@/views/Products/Products.vue";
-import SingleProduct from "@/views/Products/components/SingleProduct.vue";
+import DashBoard from "@/views/DashBoard.vue";
+import AboutUs from "@/views/AboutUs.vue";
+import ContactS from "@/views/ContactS.vue";
+import CarShopping from "@/views/CarShopping.vue";
+import ProductsAll from "@/views/ProductsAll.vue";
+import SingleProduct from "@/views/SingleProduct.vue";
 import SearchProducts from "@/views/SearchProducts.vue";
-import Categoric from "@/views/Categoric.vue"; 
+import CategoricPro from "@/views/CategoricPro.vue"; 
 
 const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
       path: '/',
-      name: 'Dashboard',
-      component: Dashboard
+      name: 'DashBoard',
+      component: DashBoard
     },
     {
-      path: '/Aboutus/',
-      name: 'Aboutus',
-      component: Aboutus
+      path: '/AboutUs/',
+      name: 'AboutUs',
+      component: AboutUs
     },
     {
-      path: '/Contact/',
-      name: 'Contact',
-      component: Contact
+      path: '/ContactS/',
+      name: 'ContactS',
+      component: ContactS
     },
     {
-      path: '/Products/',
-      name: 'Products',
-      component: Products
+      path: '/ProductsAll/',
+      name: 'ProductsAll',
+      component: ProductsAll
     },
     {
       path: '/SingleProduct/:id',
@@ -42,14 +42,14 @@ const router = createRouter({
       component: SearchProducts
     },    
     {
-      path: '/Carshopping/',
-      name: 'Carshopping',
-      component: Carshopping
+      path: '/CarShopping/',
+      name: 'CarShopping',
+      component: CarShopping
     },
     {
-      path: '/Categoric/:category', 
-      name: 'Categoric',
-      component: Categoric
+      path: '/CategoricPro/:category', 
+      name: 'CategoricPro',
+      component: CategoricPro
     }
   ]
 });

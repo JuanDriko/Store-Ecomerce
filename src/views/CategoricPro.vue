@@ -3,23 +3,22 @@
       <div class="row">
         <div class="row">
           <div class="dropdown">
-            <button class="dropdown-toggle nav-link ms-5 mt-3" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-              Ordenar
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <div>
-                <FilterPrice :array="products" @sorted="updateProducts" />
-              </div>
-              <div>
-                <FilterDiscount :array="products" @sorted="updateProducts"/>
-              </div>
-              <div>
-                <FilterRating :array="products" @sorted="updateProducts"/>
-              </div>
-            </div>
-          </div>
-  
-          <div v-for="product in products" :key="product.id" class="col-sm-4 mb-4">
+                      <button class="dropdown-toggle nav-link ms-5 mt-3" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                          Ordenar
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <div>                            
+                            <FilterPrice :array="categoric.products" @sorted="updateProducts" />
+                        </div>
+                        <div>                            
+                            <FilterDiscount :array="categoric.products" @sorted="updateProducts"/>
+                        </div>
+                        <div>
+                            <FilterRating :array="categoric.products" @sorted="updateProducts"/>
+                        </div>
+                      </div>
+                  </div>
+          <div v-for="product in categoric.products" :key="product.id" class="col-sm-4 mb-4">
             <div class="card border-0 shadow">
               <div class="card p-2 border-0 position-relative" style="height: 300px; overflow: hidden;">
                 <img class="card-img" :src="product.images[0]" alt="Product Image" style="object-fit: contain; height: 100%; width: 100%;">
@@ -32,45 +31,48 @@
               <div class="card-body d-flex flex-column align-items-center">
                 <div>
                   <a class="h5 text-decoration-none">{{ product.title }}</a>
-                </div>                
+                </div>
                 <h5 class="card-title text-center mt-2">Precio: $ {{ product.price }}</h5>
                 <p class="mt-4">Popularidad:</p>
                 <h6 class="text-warning text-center mb-2">{{ product.rating }}<i class="fa-solid fa-star"></i></h6> 
-                <h6 class="text-danger text-center mb-2">{{ product.discountPercentage }}% Off</h6> 
+                <h6 class="text-danger text-center mb-2">{{ product.discountPercentage }}% Off</h6>
                 <a href="#" class="btn btn-primary mt-2" @click="addToCart(product)">Agregar <i class="fa fa-fw fa-cart-arrow-down text-light"></i></a>
-              </div>                    
+              </div>
             </div>
           </div>
         </div>
-        <Popular :addToCart="addToCart"/>
       </div>
+    <PopularPro/>
     </div>
   </template>
   
   <script>
   import { useCartStore } from '@/store/car.js';
-  import Popular from '@/components/Popular.vue';
+  import PopularPro from '@/components/PopularPro.vue';
   import FilterPrice from './components/FilterPrice.vue';
   import FilterDiscount from './components/FilterDiscount.vue';
   import FilterRating from './components/FilterRating.vue';
-  import { getProducts } from '../Products/services.js';
+  import { getProductsByCategory } from './services/services.js';
   
   export default {
     components: {
-      Popular,
+      PopularPro,
       FilterPrice,
       FilterDiscount,
       FilterRating
     },
     data() {
       return {
-        products: [],
-      }
+        categoric: {
+          products: []
+        }
+      };
     },
     methods: {
-      async fetchProducts() {
+      async getCategoric() {
         try {
-          this.products = await getProducts();
+          const category = this.$route.params.category;
+          this.categoric.products = await getProductsByCategory(category);
         } catch (error) {
           console.error(error.message);
         }
@@ -79,16 +81,21 @@
         useCartStore().addToCart(product);
       },
       updateProducts(sortedProducts) {
-        this.products = sortedProducts; 
+        this.categoric.products = sortedProducts;
       }
     },
-    async mounted() {
-      await this.fetchProducts();
+    mounted() {
+      this.getCategoric();
     },
-  }
+    watch: {
+      '$route.params.category'() {
+        this.getCategoric();
+      }
+    }
+  };
   </script>
   
-  <style scoped>
+  <style lang="scss" scoped>
   
   </style>
   

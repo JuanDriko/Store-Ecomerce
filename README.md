@@ -1,9 +1,9 @@
 # Visita la tienda aqui 
-<a href='https://juandriko.github.io/Store-Ecomerce/'> Ver la pagina aqui </a>
+<a href='https://juandriko.github.io/Products/'> Ver la pagina aqui </a>
 
 # Store+
 Descripción
-Store+ es una aplicación de comercio electrónico desarrollada con Vite y Vue 2, utilizando Pinia como una solución de estado global para el carrito de compras. Esta aplicación permite a los usuarios explorar productos, agregarlos al carrito de compras y realizar compras.
+Store+ es una aplicación de comercio electrónico desarrollada VueCli y Vue 2, utilizando Pinia como una solución de estado global para el carrito de compras. Esta aplicación permite a los usuarios explorar productos, agregarlos al carrito de compras y realizar compras.
 
 ## Instalación y Ejecución
 Para ejecutar el proyecto localmente, sigue estos pasos:
@@ -35,6 +35,6 @@ Para ejecutar las pruebas unitarias, sigue estos pasos:
 
 1. Asegúrate de haber instalado las dependencias del proyecto.
 2. Abre una terminal en la carpeta raíz del proyecto.
-3. Ejecuta npm test para ejecutar todas las pruebas unitarias.
+3. Ejecuta npm run test para ejecutar todas las pruebas unitarias.
 
 # GRACIAS

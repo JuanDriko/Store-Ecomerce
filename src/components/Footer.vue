@@ -72,13 +72,11 @@
 </template>
 
 <script>
-    export default {
-        
-    }
+
 </script>
 
 <style scoped>
     li {
         font-size: 12px !important;
     }
-</style>
+</style>./FooteR.vue
