@@ -2,7 +2,7 @@ import { mount } from '@vue/test-utils';
 import FilterPrice from '@/views/components/FilterPrice.vue';
 
 describe('FilterPrice', () => {
-  it('emits the sorted event with products sorted by price in ascending order', async () => {
+  it('emite el evento ordenado con productos ordenados por precio en orden ascendente', async () => {
 
     const products = [
       { id: 1, price: 20 },

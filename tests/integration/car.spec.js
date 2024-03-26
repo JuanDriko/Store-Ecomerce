@@ -1,12 +1,12 @@
 import { mount } from '@vue/test-utils';
-import ProductsAll from '@/views/ProductsAll.vue';
-import NavBar from '@/components/NavBar.vue';
-import { useCartStore } from '@/store/car.js';
+import ProductsAll from '../../src/views/ProductsAll.vue';
+import NavBar from '../../src/components/NavBar.vue';
+import { useCartStore } from '../../src/store/car.js'; 
 
-jest.mock('@/store/car.js');
+jest.mock('../../src/store/car.js'); 
 
-describe('Integration Test - Product Addition to Cart', () => {
-  it('adds a product to the cart and reflects the change in the NavBar', async () => {
+describe('Integration Test - adicion de producto a carrito de compras', () => {
+  it('agregando producto a carrito reflejado en el NavBar', async () => {
     const addToCart = jest.fn();
     useCartStore.mockReturnValue({
       addToCart,
@@ -36,4 +36,3 @@ describe('Integration Test - Product Addition to Cart', () => {
 async function waitForComponentToRender(wrapper) {
   await wrapper.vm.$nextTick();
 }
-

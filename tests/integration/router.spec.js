@@ -1,32 +1,30 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import router from '@/router'; // Importa el enrutador desde el archivo router.js
+import router from '@/router'; 
 
 describe('Router', () => {
-  it('Should have the correct number of routes', () => {
-    expect(router.getRoutes()).toHaveLength(8); // Ajusta el número de rutas según tu configuración
+  it('Número correcto de rutas.', () => {
+    expect(router.getRoutes()).toHaveLength(8);
   });
 
-  it('Should have a route for DashBoard', () => {
+  it('Debería tener una ruta para DashBoard', () => {
     const dashBoardRoute = router.getRoutes().find(route => route.name === 'DashBoard');
     expect(dashBoardRoute).toBeDefined();
   });
 
-  it('Should have a route for AboutUs', () => {
+  it('Debería tener una ruta para AboutUs', () => {
     const aboutUsRoute = router.getRoutes().find(route => route.name === 'AboutUs');
     expect(aboutUsRoute).toBeDefined();
   });
 
-  // Agrega pruebas para otras rutas aquí...
 
-  it('Should navigate to DashBoard when accessing root path', async () => {
+  it('Debe navegar al DashBoard al acceder a la ruta raíz', async () => {
     await router.push('/');
     expect(router.currentRoute.value.name).toBe('DashBoard');
   });
 
-  it('Should navigate to AboutUs when accessing /AboutUs path', async () => {
+  it('Debe navegar a AboutUs al acceder a la ruta /AboutUs', async () => {
     await router.push('/AboutUs');
     expect(router.currentRoute.value.name).toBe('AboutUs');
   });
 
-  // Agrega más pruebas de navegación aquí...
 });

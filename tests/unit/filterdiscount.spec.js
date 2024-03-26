@@ -2,7 +2,7 @@ import { mount } from '@vue/test-utils';
 import FilterDiscount from '@/views/components/FilterDiscount.vue';
 
 describe('FilterDiscount', () => {
-  it('emits the sorted event with products sorted by discountPercentage in descending order', async () => {
+  it('emite el evento ordenado con productos ordenados por porcentaje de descuento en orden descendente', async () => {
 
     const products = [
       { id: 1, discountPercentage: 20 },

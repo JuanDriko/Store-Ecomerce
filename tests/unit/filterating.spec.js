@@ -2,7 +2,7 @@ import { mount } from '@vue/test-utils';
 import FilterRating from '@/views/components/FilterRating.vue';
 
 describe('FilterRating', () => {
-  it('emits the sorted event with products sorted by rating in descending order', async () => {
+  it('emite el evento ordenado con productos ordenados por clasificación en orden descendente', async () => {
 
     const products = [
       { id: 1, rating: 4 },
