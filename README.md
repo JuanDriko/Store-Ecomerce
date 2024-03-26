@@ -1,5 +1,5 @@
 # Visita la tienda aqui 
-<a href='https://juandriko.github.io/Store-Ecomerce/'> Ver la pagina aqui </a>
+<a href='https://juandriko.github.io/Ecomerce-store/'> Ver la pagina aqui </a>
 
 # Store+
 Descripción

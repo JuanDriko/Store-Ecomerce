@@ -12,7 +12,7 @@ const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
-      path: '/Store-Ecomerce/',
+      path: '/',
       name: 'DashBoard',
       component: DashBoard
     },
