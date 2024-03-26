@@ -37,7 +37,7 @@
                 <p class="mt-4">Popularidad:</p>
                 <h6 class="text-warning text-center mb-2">{{ product.rating }}<i class="fa-solid fa-star"></i></h6> 
                 <h6 class="text-danger text-center mb-2">{{ product.discountPercentage }}% Off</h6> 
-                <a href="#" class="btn btn-primary mt-2" @click="addToCart(product)">Agregar <i class="fa fa-fw fa-cart-arrow-down text-light"></i></a>
+                <a href="#" class="btn btn-primary mt-2" @click="addToCart(product)" data-testid="add-to-cart-button">Agregar <i class="fa fa-fw fa-cart-arrow-down text-light"></i></a>
               </div>                    
             </div>
           </div>

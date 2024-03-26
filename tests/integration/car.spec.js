@@ -1,25 +1,39 @@
 import { mount } from '@vue/test-utils';
+import ProductsAll from '@/views/ProductsAll.vue';
 import NavBar from '@/components/NavBar.vue';
-import CarShopping from '@/views/CarShopping.vue';
 import { useCartStore } from '@/store/car.js';
 
-describe('Integration Test: Car Shopping Cart', () => {
-  it('Should update cart items when adding/removing products from CarShopping component', async () => {
-    const wrapper = mount(NavBar);
+jest.mock('@/store/car.js');
 
-    const firstProduct = { id: 1, title: 'Product 1', price: 10, quantity: 1 };
-    await wrapper.findComponent(CarShopping).setData({ cartProducts: [firstProduct] });
+describe('Integration Test - Product Addition to Cart', () => {
+  it('adds a product to the cart and reflects the change in the NavBar', async () => {
+    const addToCart = jest.fn();
+    useCartStore.mockReturnValue({
+      addToCart,
+      totalItems: 1,
+    });
 
-    expect(useCartStore().items).toHaveLength(1);
+    const productsWrapper = mount(ProductsAll);
+    const navBarWrapper = mount(NavBar);
 
-    await wrapper.findComponent(CarShopping).vm.removeProduct(firstProduct);
+    await waitForComponentToRender(productsWrapper);
+    await waitForComponentToRender(navBarWrapper);
 
-    expect(useCartStore().items).toHaveLength(0);
+    const addButton = productsWrapper.find('[data-testid="add-to-cart-button"]');
+    await addButton.trigger('click');
 
-    const secondProduct = { id: 2, title: 'Product 2', price: 20, quantity: 1 };
-    await wrapper.findComponent(CarShopping).setData({ cartProducts: [secondProduct] });
+    await waitForComponentToRender(productsWrapper);
+    await waitForComponentToRender(navBarWrapper);
 
-    expect(useCartStore().items).toHaveLength(1);
-    expect(useCartStore().items[0]).toEqual(secondProduct);
+    expect(addToCart).toHaveBeenCalled();
+    expect(addToCart.mock.calls[0][0]).toEqual(productsWrapper.vm.getProductById(1));
+
+    const cartLength = navBarWrapper.find('.badge').text();
+    expect(cartLength).toBe('1'); 
   });
 });
+
+async function waitForComponentToRender(wrapper) {
+  await wrapper.vm.$nextTick();
+}
+

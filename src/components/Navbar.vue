@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light shadow navbar-lg">
     <div class="container-fluid">
-      <router-link to="/" class="navbar-brand text-primary logo h1 fs-4">
+      <router-link to="/Store-Ecomerce/" class="navbar-brand text-primary logo h1 fs-4">
         <h3>Store+</h3>
       </router-link>
 
@@ -20,7 +20,7 @@
       <div class="collapse navbar-collapse" id="templatemo_main_nav">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <li class="nav-item ms-4">
-            <router-link to="/" class="nav-link ms-5 mt-3">Inicio</router-link>
+            <router-link to="/Store-Ecomerce/" class="nav-link ms-5 mt-3">Inicio</router-link>
           </li>
           <li class="nav-item ms-4">
             <router-link to="/Aboutus/" class="nav-link ms-5 mt-3">Nosotros</router-link>
@@ -43,7 +43,7 @@
               <div class="m-2">
                 <a class="nav-icon position-relative text-decoration-none fs-4" href="#">
                   <i class="fa fa-fw fa-cart-arrow-down text-dark"></i>
-                  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-light text-dark ms-2">{{ cartLength }}</span>
+                  <span v-if="cartLength !== undefined" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-light text-dark ms-2">{{ cartLength }}</span>
                 </a>
               </div>
             </router-link>
@@ -69,7 +69,7 @@ export default {
   },
   setup() {
     const categories = ref([]);
-    const cartLength = ref(useCartStore().totalItems);
+    const cartLength = ref(undefined);
 
     const fetchCategories = async () => {
       try {
@@ -83,7 +83,7 @@ export default {
 
     watch(() => useCartStore().totalItems, (newValue) => {
       cartLength.value = newValue;
-    });
+    }, { immediate: true });
 
     return {
       categories,

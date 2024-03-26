@@ -26,9 +26,8 @@ El proyecto sigue una estructura típica de una aplicación Vue, con la siguient
 7. main.js: Punto de entrada de la aplicación.
 8. tests/: Contiene archivos de pruebas unitarias escritas con Jest para los componentes y funciones principales.
 9. Decisiones de Diseño
-10. Vite: Se eligió Vite como el entorno de desarrollo para aprovechar su rápida velocidad de compilación y recarga en caliente.
-11. Se optó por utilizar Vue 3 debido a su amplia compatibilidad con las bibliotecas y plugins existentes.
-12. Pinia: Se utilizó Pinia como solución de estado global debido a su simplicidad y compatibilidad con Vue 3.
+10. Se optó por utilizar Vue 3 debido a su amplia compatibilidad con las bibliotecas y plugins existentes.
+11. Pinia: Se utilizó Pinia como solución de estado global debido a su simplicidad y compatibilidad con Vue 3.
 
 ## Ejecución de Pruebas
 Para ejecutar las pruebas unitarias, sigue estos pasos:
