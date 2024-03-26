@@ -9,21 +9,20 @@
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      search: null
-    };
-  },
-  methods: {
-    getSearch() {
-      console.log(this.search);
-      this.$router.push({ name: 'SearchProducts', params: { searchQuery: this.search } });
-    }
-  }
+<script setup>
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+
+
+const search = ref(null);
+const router = useRouter();
+
+const getSearch = () => {
+  console.log(search.value);
+  router.push({ name: 'SearchProducts', params: { searchQuery: search.value } });
 };
 </script>
+
 
 <style lang="scss" scoped>
 </style>

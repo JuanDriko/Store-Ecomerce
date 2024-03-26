@@ -58,37 +58,39 @@
 </template>
 
 <script>
-import SearchQuery from './SearchQuery.vue'
-import { useCartStore } from '@/store/car.js'
+import { ref, onMounted, watch } from 'vue';
+import SearchQuery from './SearchQuery.vue';
+import { useCartStore } from '@/store/car.js';
 import { getCategories } from './services/services.js';
 
 export default {
   components: {
     SearchQuery,
   },
-  data() {
-    return {
-      categories: []
-    }
-  },
-  methods: {
-    async fetchCategories() {
+  setup() {
+    const categories = ref([]);
+    const cartLength = ref(useCartStore().totalItems);
+
+    const fetchCategories = async () => {
       try {
-        this.categories = await getCategories();
+        categories.value = await getCategories();
       } catch (error) {
         console.error(error.message);
       }
-    },
+    };
+
+    onMounted(fetchCategories);
+
+    watch(() => useCartStore().totalItems, (newValue) => {
+      cartLength.value = newValue;
+    });
+
+    return {
+      categories,
+      cartLength,
+    };
   },
-  mounted() {
-    this.fetchCategories();
-  },
-  computed: {
-    cartLength() {
-      return useCartStore().totalItems;
-    }
-  }
-}
+};
 </script>
 
 <style scoped>

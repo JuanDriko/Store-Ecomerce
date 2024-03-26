@@ -46,8 +46,8 @@
       </div>
     </div>
   </template>
-  
-  <script>
+  <script setup>
+  import { ref, onMounted } from 'vue';
   import { useCartStore } from '@/store/car.js';
   import PopularPro from '@/components/PopularPro.vue';
   import FilterPrice from './components/FilterPrice.vue';
@@ -55,37 +55,25 @@
   import FilterRating from './components/FilterRating.vue';
   import { getProducts } from './services/services.js';
   
-  export default {
-    components: {
-      PopularPro,
-      FilterPrice,
-      FilterDiscount,
-      FilterRating
-    },
-    data() {
-      return {
-        products: [],
-      }
-    },
-    methods: {
-      async fetchProducts() {
-        try {
-          this.products = await getProducts();
-        } catch (error) {
-          console.error(error.message);
-        }
-      },
-      addToCart(product) {
-        useCartStore().addToCart(product);
-      },
-      updateProducts(sortedProducts) {
-        this.products = sortedProducts; 
-      }
-    },
-    async mounted() {
-      await this.fetchProducts();
-    },
-  }
+  const products = ref([]);
+  
+  const fetchProducts = async () => {
+    try {
+      products.value = await getProducts();
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+  
+  const addToCart = (product) => {
+    useCartStore().addToCart(product);
+  };
+  
+  const updateProducts = (sortedProducts) => {
+    products.value = sortedProducts;
+  };
+  
+  onMounted(fetchProducts);
   </script>
   
   <style scoped>

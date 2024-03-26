@@ -77,56 +77,49 @@
     </div>
 </template>
 
-<script>
+<script setup>
+import { ref, onMounted, watch } from 'vue';
+import { useRoute } from 'vue-router';
 import { useCartStore } from '@/store/car.js';
 import PopularPro from '@/components/PopularPro.vue';
 import { getSingleProduct } from './services/services.js';
 
-export default {
-  components: {
-    PopularPro
-  },
-  data() {
-    return {
-      singleProduct: {
-        images: [],
-        title: '',
-        price: '',
-        description: '',
-        brand: '',
-        stock: ''
-      },
-      index: 0
-    };
-  },
-  computed: {
-    currentImage() {
-      return this.singleProduct.images[this.index] || ''; 
-    }
-  },
-  methods: {
-    async fetchSingleProduct(productId) {
-      try {
-        this.singleProduct = await getSingleProduct(productId);
-      } catch (error) {
-        console.error(error.message);
-      }
-    },
+const route = useRoute();
 
-    addToCart() {
-      useCartStore().addToCart(this.singleProduct);
-    }
-  },
-  async mounted() {
-    await this.fetchSingleProduct(this.$route.params.id);
-  },
-  watch: {
-    '$route.params.id': {
-      handler: 'fetchSingleProduct',
-      immediate: true 
-    }
+const singleProduct = ref({
+  images: [],
+  title: '',
+  price: '',
+  description: '',
+  brand: '',
+  stock: ''
+});
+
+const index = ref(0);
+
+const currentImage = () => {
+  return singleProduct.value.images[index.value] || ''; 
+};
+
+const fetchSingleProduct = async (productId) => {
+  try {
+    singleProduct.value = await getSingleProduct(productId);
+  } catch (error) {
+    console.error(error.message);
   }
 };
+
+const addToCart = () => {
+  useCartStore().addToCart(singleProduct.value);
+};
+
+onMounted(async () => {
+  await fetchSingleProduct(route.value.params.id);
+});
+
+watch(() => route.value.params.id, (newValue) => {
+  fetchSingleProduct(newValue);
+}, { immediate: true });
 </script>
 
 <style lang="scss" scoped>

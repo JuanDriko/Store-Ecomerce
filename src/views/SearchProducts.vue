@@ -8,7 +8,9 @@
               <img class="card-img" :src="product.images[0]" alt="Product Image" style="object-fit: contain; height: 100%; width: 100%;">
               <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                 <ul class="list-unstyled text-center d-none">
-                  <li><router-link :to="{ name: 'SingleProduct', params: { id: product.id }}" class="btn btn-primary text-white mt-2">Ver <i class="far fa-eye"></i></router-link></li>
+                  <li>
+                    <router-link v-if="product.id" :to="{ name: 'SingleProduct', params: { id: product.id }}" class="btn btn-primary text-white mt-2">Ver <i class="far fa-eye"></i></router-link>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -31,44 +33,37 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref, onMounted, watch } from 'vue';
+import { useRoute } from 'vue-router';
 import { useCartStore } from '@/store/car.js';
 import PopularPro from '@/components/PopularPro.vue';
 import { searchProducts } from './services/services.js';
 
-export default {
-  components: {
-    PopularPro,
-  },
-  data() {
-    return {
-      searchPro: [],
-    };
-  },
-  methods: {
-    async getSearchProducts() {
-      const searchQuery = this.$route.params.searchQuery.trim().toLowerCase();
-      try {
-        this.searchPro = await searchProducts(searchQuery);
-        console.log('searchdata', searchQuery);
-      } catch (error) {
-        console.error(error.message);
-      }
-    },
-    addToCart(product) {
-      useCartStore().addToCart(product);
-    },
-  },
-  mounted() {
-    this.getSearchProducts();
-  },
-  watch: {
-    '$route'() {
-      this.getSearchProducts(); 
-    },
-  },
+const searchPro = ref([]);
+const route = useRoute();
+
+const getSearchProducts = async () => {
+  const searchQuery = route.params?.searchQuery?.trim().toLowerCase();
+  if (searchQuery) {
+    try {
+      searchPro.value = await searchProducts(searchQuery);
+      console.log('searchdata', searchQuery);
+    } catch (error) {
+      console.error(error.message);
+    }
+  }
 };
+
+const addToCart = (product) => {
+  useCartStore().addToCart(product);
+};
+
+onMounted(getSearchProducts);
+
+watch(() => route.params.searchQuery, getSearchProducts);
 </script>
+
 
 <style scoped>
 </style>

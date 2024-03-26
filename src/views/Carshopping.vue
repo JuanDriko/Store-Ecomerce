@@ -36,33 +36,26 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { computed } from 'vue';
 import { useCartStore } from '@/store/car.js';
 
-export default {
-  computed: {
-    cartProducts() {
-      return useCartStore().items;
-    },
-    hasCartProducts() {
-      return this.cartProducts.length > 0;
-    },
-    totalCartPrice() {
-      return this.cartProducts.reduce((total, product) => total + product.price * product.quantity, 0);
-    }
-  },
-  methods: {
-    removeProduct(product) {
-      const index = this.cartProducts.findIndex(p => p === product);
-      if (index !== -1) {
-        useCartStore().removeFromCart(index);
-      }
-    },
-    updateQuantity(product) {
-      product.quantity = Math.max(parseInt(product.quantity) || 0, 1);
-      useCartStore().saveCart();
-    },
-  },
+const cartProducts = computed(() => useCartStore().items);
+const hasCartProducts = computed(() => cartProducts.value.length > 0);
+const totalCartPrice = computed(() =>
+  cartProducts.value.reduce((total, product) => total + product.price * product.quantity, 0)
+);
+
+const removeProduct = (product) => {
+  const index = cartProducts.value.findIndex((p) => p === product);
+  if (index !== -1) {
+    useCartStore().removeFromCart(index);
+  }
+};
+
+const updateQuantity = (product) => {
+  product.quantity = Math.max(parseInt(product.quantity) || 0, 1);
+  useCartStore().saveCart();
 };
 </script>
 

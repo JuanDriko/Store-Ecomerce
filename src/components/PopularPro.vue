@@ -11,7 +11,7 @@
           <h5 class="card-title">{{ product.title }}</h5>
           <h5 class="card-title text-center mt-2">Precio: $ {{ product.price }}</h5>
                 <h6 class="text-danger text-center mb-2 mt-4">{{ product.discountPercentage }}% Off</h6>
-          <router-link :to="{ name: 'SingleProduct', params: { id: product.id }}" class="btn btn-primary m-auto col-5 mt-3" href="#">Ver Producto</router-link>
+          <router-link :to="{ name: 'SingleProduct', params: { id: product.id }}" class="btn btn-primary m-auto col-5 mt-3" >Ver Producto</router-link>
           <a @click="addToCart(product)" class="btn btn-primary m-auto mt-2 col-5" href="#">Agregar <i class="fa fa-fw fa-cart-arrow-down text-light"></i></a>
         </div>
       </div>
@@ -83,36 +83,35 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { useCartStore } from '@/store/car.js';
 import { fetchTopProducts } from './services/services.js';
 
-export default {
-  data() {
-    return {
-      topProducts: [],
-      screenWidth: false
-    };
-  },
-  methods: {
-    async getTopProducts() {
-      this.topProducts = await fetchTopProducts();
-    },
-    addToCart(product) {
-      useCartStore().addToCart(product);
-    },
-    screenSize() {
-      this.screenWidth = window.innerWidth <= 800;
-    }
-  },
-  mounted() {
-    this.getTopProducts();
-    window.addEventListener('resize', this.screenSize);
-  },
-  beforeMount() {
-    window.removeEventListener('resize', this.screenSize);
-  }
+const topProducts = ref([]);
+const screenWidth = ref(false);
+
+const getTopProducts = async () => {
+  topProducts.value = await fetchTopProducts();
 };
+
+const addToCart = (product) => {
+  useCartStore().addToCart(product);
+};
+
+const screenSize = () => {
+  screenWidth.value = window.innerWidth <= 800;
+};
+
+onMounted(() => {
+  getTopProducts();
+  screenSize();
+  window.addEventListener('resize', screenSize);
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', screenSize);
+});
 </script>
 
 <style scoped>
