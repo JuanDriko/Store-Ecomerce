@@ -48,7 +48,7 @@ const getSearchProducts = async () => {
   if (searchQuery) {
     try {
       searchPro.value = await searchProducts(searchQuery);
-      console.log('searchdata', searchQuery);
+      // console.log('searchdata', searchQuery);
     } catch (error) {
       console.error(error.message);
     }
@@ -63,7 +63,6 @@ onMounted(getSearchProducts);
 
 watch(() => route.params.searchQuery, getSearchProducts);
 </script>
-
 
 <style scoped>
 </style>
