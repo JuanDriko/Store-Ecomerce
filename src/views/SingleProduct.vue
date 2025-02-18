@@ -84,7 +84,7 @@ import { useCartStore } from '@/store/car.js';
 import PopularPro from '@/components/PopularPro.vue';
 import { getSingleProduct } from './services/services.js';
 
-const route = useRoute(); // route es un objeto reactivo, no necesita .value
+const route = useRoute();
 
 const singleProduct = ref({
   images: [],
