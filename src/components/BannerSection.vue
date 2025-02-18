@@ -79,5 +79,4 @@
 img{
     width: 70%;
 }
-
 </style>

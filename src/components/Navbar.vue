@@ -31,7 +31,12 @@
                 Categorías
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <router-link v-for="category in categories" :key="category" :to="{ name: 'CategoricPro', params: { category: category }}" class="dropdown-item">{{ category }}</router-link>
+                <router-link v-for="category in categories" 
+                            :key="category.slug" 
+                            :to="{ name: 'CategoricPro', params: { category: category.slug }}" 
+                            class="dropdown-item">
+                  {{ category.name }}
+                </router-link>
               </div>
             </div>
           </li>

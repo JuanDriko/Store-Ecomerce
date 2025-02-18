@@ -84,7 +84,7 @@ import { useCartStore } from '@/store/car.js';
 import PopularPro from '@/components/PopularPro.vue';
 import { getSingleProduct } from './services/services.js';
 
-const route = useRoute();
+const route = useRoute(); // route es un objeto reactivo, no necesita .value
 
 const singleProduct = ref({
   images: [],
@@ -114,10 +114,10 @@ const addToCart = () => {
 };
 
 onMounted(async () => {
-  await fetchSingleProduct(route.value.params.id);
+  await fetchSingleProduct(route.params.id); 
 });
 
-watch(() => route.value.params.id, (newValue) => {
+watch(() => route.params.id, (newValue) => {
   fetchSingleProduct(newValue);
 }, { immediate: true });
 </script>

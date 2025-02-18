@@ -4,7 +4,7 @@ export async function getCategories() {
       const data = await response.json();
       return data;
     } catch (error) {
-      throw new Error('Error al obtener categorías:', error);
+      console.error('Error al obtener los categorías:', error);
     }
   }
   

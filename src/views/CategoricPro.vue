@@ -62,11 +62,13 @@ const categoric = ref({
 const getCategoric = async () => {
   try {
     const category = route.params.category;
+    if (!category) return; // Evita errores si no hay categoría
     categoric.value.products = await getProductsByCategory(category);
   } catch (error) {
     console.error(error.message);
   }
 };
+
 
 const addToCart = (product) => {
   useCartStore().addToCart(product);

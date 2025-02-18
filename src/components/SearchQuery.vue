@@ -18,11 +18,9 @@ const search = ref(null);
 const router = useRouter();
 
 const getSearch = () => {
-  console.log(search.value);
+  // console.log(search.value);
   router.push({ name: 'SearchProducts', params: { searchQuery: search.value } });
 };
 </script>
-
-
 <style lang="scss" scoped>
 </style>
